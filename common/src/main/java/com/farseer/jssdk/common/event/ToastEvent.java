@@ -32,7 +32,7 @@ import com.google.gson.reflect.TypeToken;
  */
 public class ToastEvent extends JSEvent {
 
-    private Data data;
+    private Request request;
 
     public ToastEvent(String module, String function) {
         super(module, function);
@@ -41,17 +41,17 @@ public class ToastEvent extends JSEvent {
     @Override
     public void processData(String json) {
         log(json);
-        data = JsonTool.fromJsonString(json, new TypeToken<Data>() {}.getType());
-        if (data == null || !data.check()) {
-            LogTool.error(String.format("toast 's params of the module are not support", getModule()));
+        request = JsonTool.fromJsonString(json, new TypeToken<Request>() {}.getType());
+        if (request == null || !request.check()) {
+            LogTool.error(String.format("toast 's params of the module named %s are not support", getModule()));
         }
     }
 
-    public Data getData() {
-        return data;
+    public Request getRequest() {
+        return request;
     }
 
-    public static class Data {
+    public static class Request {
         @SerializedName("content")
         private String content;
 

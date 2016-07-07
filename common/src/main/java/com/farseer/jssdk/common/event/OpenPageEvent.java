@@ -32,27 +32,27 @@ import com.google.gson.reflect.TypeToken;
  */
 public class OpenPageEvent extends JSEvent {
 
-    private Data data;
+    private Request request;
 
     public OpenPageEvent(String module, String function) {
         super(module, function);
     }
 
-    public Data getData() {
-        return data;
+    public Request getRequest() {
+        return request;
     }
 
     @Override
     public void processData(String json) {
         log(json);
-        data = JsonTool.fromJsonString(json, new TypeToken<Data>() {
+        request = JsonTool.fromJsonString(json, new TypeToken<Request>() {
         }.getType());
-        if (data == null || !data.check()) {
-            LogTool.error(String.format("openPage 's params of the module are not support", getModule()));
+        if (request == null || !request.check()) {
+            LogTool.error(String.format("openPage 's params of the module named %s are not support", getModule()));
         }
     }
 
-    public static class Data {
+    public static class Request {
         @SerializedName("url")
         private String url;
 

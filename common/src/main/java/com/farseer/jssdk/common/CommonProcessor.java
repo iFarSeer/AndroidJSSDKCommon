@@ -47,9 +47,9 @@ public class CommonProcessor extends JSProcessor {
 
     @Subscribe
     public void processToastEvent(ToastEvent event) {
-        ToastEvent.Data data = event.getData();
-        if (data != null && data.check()) {
-            Toast.makeText(getContext(), data.getContent(), Toast.LENGTH_LONG).show();
+        ToastEvent.Request request = event.getRequest();
+        if (request != null && request.check()) {
+            Toast.makeText(getContext(), request.getContent(), Toast.LENGTH_LONG).show();
             getJsInvoker().onJsInvoke(event.getCallback(""));
         }
     }
@@ -69,9 +69,9 @@ public class CommonProcessor extends JSProcessor {
 
     @Subscribe
     public void processOpenPageEvent(OpenPageEvent event) {
-        OpenPageEvent.Data data = event.getData();
-        if (data != null && data.check()) {
-            WebActivity.openWebActivity(getContext(), event.getData().getUrl());
+        OpenPageEvent.Request request = event.getRequest();
+        if (request != null && request.check()) {
+            WebActivity.openWebActivity(getContext(), event.getRequest().getUrl());
             getJsInvoker().onJsInvoke(event.getCallback(""));
         }
     }
