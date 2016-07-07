@@ -22,6 +22,11 @@ android {
     compileSdkVersion 23
     buildToolsVersion "23.0.3"
 
+    sourceCompatibility = 1.7
+    targetCompatibility = 1.7
+
+    resourcePrefix "common_"
+
     defaultConfig {
         minSdkVersion 15
         targetSdkVersion 23
