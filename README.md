@@ -1,72 +1,32 @@
-### Common Module
-Common Module 中支持的通信js方法说明。
+# AndroidJSSDKCommon
 
-####  Toast提示
-方法格式:
-toast(params, callback)
 
-params说明:
-``` json
-{
-    "content": ""
-}
+AndroidJSSDKCommon是基于native和js通讯协议AndroidJSSDKCore实现的通用模块。
+
+## 使用方式
+
+
+* Toast提示
+
+```javascript
+ITOMIX.Common.toast(JSON.stringify({'content':'toast提示'}), function(params){});
 ```
+ 
+ 
+* Activity方式打开新页面
 
-* content:提示文案
-
-callback's params说明:
-``` json
-{
-}
+```javascript
+ITOMIX.Common.openPage(JSON.stringify({'url':'file:///android_asset/newActivityPage.html'}), function(){});
 ```
+ 
+* 关闭当前页面
 
-
-#### 打开新页面
-方法格式:
-openPage(params, callback)
-
-params说明:
-``` json
-{
-    "url":""
-}
+```javascript
+ITOMIX.Common.closePage(JSON.stringify({}), function(){});
 ```
+  
+* 返回上一页
 
-callback's params说明:
-``` json
-{
-}
-```
-
-#### 关闭当前页面
-方法格式:
-closePage(params, callback)
-
-params说明:
-``` json
-{
-}
-```
-
-callback's params说明:
-``` json
-{
-}
-```
-
-
-#### 返回上一页
-方法格式:
-goBack(params, callback)
-
-params说明:
-``` json
-{
-}
-```
-
-callback's params说明:
-``` json
-{
-}
+```javascript
+ITOMIX.Common.goBack(JSON.stringify({}), function(params){});
 ```
